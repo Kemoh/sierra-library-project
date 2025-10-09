@@ -9,8 +9,8 @@
     --font--headline: "Oxygen", "Arial narrow Bold", sans-serif;
 
     /* Colors */
-    --primary-color: #0000F5;    --secondary-color: #27AE60;
-    --tertiary-color: #f1bb19;
+    --primary-color: #000080;    --secondary-color: #27AE60;
+    --tertiary-color: #f3bb20;
     --bg-body: #f3f4f6;
     --dark-grey: #333333;
     --light-gray: #F2F2F2;
@@ -71,6 +71,7 @@ header img {
 
  header span {
         color: var(--tertiary-color);
+        font-weight: 700;
     }
 
     .ham-menu {
