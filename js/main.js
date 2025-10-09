@@ -1,6 +1,6 @@
 
-import { loadHeaderFooter } from "./utils.mjs";
-import { loadapps } from "./apps.mjs";
+import { loadHeaderFooter } from "../js/utils.mjs";
+import { loadapps } from "../js/apps.mjs";
 
 loadHeaderFooter();
 loadapps();
