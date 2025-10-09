@@ -61,7 +61,7 @@ header img {
         height: auto;
     }
 
-  header  a {
+header  a {
         display: block;
         text-decoration: none;
         padding-left: .5rem;
@@ -121,7 +121,7 @@ header img {
   background-color: rgb(200, 220, 220, 0.5);
 }
 
-header a:hover {
+.navigation a:hover {
     background: lightyellow;
 }
 
@@ -186,7 +186,7 @@ p {
     font-weight: bold;
 }
 
-/* Menu Cards */
+/* App Cards */
 #show-app-cards{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
