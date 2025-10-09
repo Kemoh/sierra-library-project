@@ -31,8 +31,8 @@ export function renderTemplate(template, targetElement) {
 export async function loadHeaderFooter() {
     try {
         // Resolve partial paths relative to this module so fetch works regardless of page location
-        const headerUrl = new URL('../partials/header.html', import.meta.url).href;
-        const footerUrl = new URL('../partials/footer.html', import.meta.url).href;
+        const headerUrl = new URL("/header.html", import.meta.url).href;
+        const footerUrl = new URL("/footer.html", import.meta.url).href;
 
         const headerTemplate = await loadTemplate(headerUrl);
         const footerTemplate = await loadTemplate(footerUrl);
