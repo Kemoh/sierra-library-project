@@ -3,24 +3,19 @@ import { appslist } from "../data/appsdata.js";
 
 // Function to load apps
 export function loadapps() {
-    // Create and inject HTML template for apps
+    // Create and inject HTML structure for apps
     document.querySelector("#sierralib-apps").innerHTML = `
-      <section class="min-h-screen bg-gray-950 text-white px-6 py-10">
-        
-      <div id="show-app-cards" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <section class="apps-section">
+        <div id="show-app-cards" class="cards-grid"></div>
 
-        <dialog id="app-dialog" class="rounded-2xl p-6 bg-gray-900 text-gray-100 shadow-2xl w-11/12 max-w-md">
-          <div class="flex justify-between items-center mb-4">
-            <h2 id="app-title" class="text-xl font-semibold"></h2>
-            <button id="close-btn" class="text-gray-400 hover:text-white text-lg font-bold">&times;</button>
+        <dialog id="app-dialog" class="app-dialog">
+          <div class="dialog-header">
+            <h3 id="app-title"></h3>
+            <button id="close-btn" class="close-btn">&times;</button>
           </div>
           
-          <p id="app-description" class="text-sm text-gray-300 mb-6"></p>
-          
-          <a id="streams-btn" href="#" target="_blank"
-            class="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium text-white">
-              Open App
-          </a>
+          <p id="app-description"></p>
+          <a id="streams-btn" href="#" target="_blank" class="open-btn">Open App</a>
         </dialog>
       </section>
     `;
@@ -37,32 +32,24 @@ export function loadapps() {
     closeBtn.addEventListener("click", () => dialog.close());
 
     // Loop through appslist and create cards
-    appslist.forEach((app, index) => {
-         // Add class to the card for styling
-        const colorClass = app.cardColor; 
-
+    appslist.forEach((app) => {
         const card = document.createElement("div");
-        
-        // Create rounded borders and animation
-        card.className =
-            `${colorClass} rounded-2xl p-4 flex flex-col items-center shadow-lg hover:shadow-blue-500/30 transition duration-300 cursor-pointer h-full
-             opacity-0 animate-fade-in`;
-        
-        // Apply animation
-        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add("app-card");
+
+        // Set card background color from dataset
+        card.style.backgroundColor = app.cardColor;
 
         // Image
         const img = document.createElement("img");
         img.src = app.appImage;
         img.alt = `${app.appName} logo`;
-        img.className = "rounded-lg mb-3 w-52 h-52 object-cover";
+        img.classList.add("app-image");
 
         // Title
-        const modalTitle = document.createElement("h2");
-        modalTitle.textContent = app.appName;
-        modalTitle.className = "text-lg font-semibold mb-2 text-center mt-auto";
+        const cardTitle = document.createElement("h2");
+        cardTitle.textContent = app.appName;
 
-        // Store app data in dataset on the CARD
+        // Store app data in dataset
         card.dataset.appName = app.appName;
         card.dataset.appDescription = app.appDescription;
         card.dataset.streamLink = app.streamLink;
@@ -76,7 +63,7 @@ export function loadapps() {
         });
 
         // Append elements
-        card.appendChild(modalTitle);
+        card.appendChild(cardTitle);
         card.appendChild(img);
         cardsContainer.appendChild(card);
     });
