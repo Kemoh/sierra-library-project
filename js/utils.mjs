@@ -13,6 +13,19 @@ export function setupHamburgerMenu() {
   }
 }
 
+
+// ===============================
+//  Create getParam function
+// ===============================
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
+
+
+
+
 // ===============================
 //  Load HTML Template
 // ===============================
@@ -31,51 +44,93 @@ export function renderTemplate(template, targetElement) {
   targetElement.innerHTML = template;
 }
 
-
 // ===============================
-//  Load Header & Footer 
+// Renders a template into a parent element
 // ===============================
-export async function loadHeaderFooter() {
-  try {
-    // Detect project base path (works on localhost & GitHub Pages)
-    const pathParts = window.location.pathname.split("/").filter(Boolean);
-    const projectRoot =
-      window.location.hostname.includes("github.io") && pathParts.length > 1
-        ? `/${pathParts[0]}/`
-        : "/";
 
-    // Build full URLs
-    const headerUrl = `${projectRoot}partials/header.html`;
-    const footerUrl = `${projectRoot}partials/footer.html`;
+/**
+ * @param {string} template The HTML string template.
+ * @param {HTMLElement} parentElement The element to render the template into.
+ * @param {*} [data] Optional data to pass to the callback.
+ * @param {Function} [callback] Optional callback function to run after rendering.
+ */
 
-    // Fetch templates
-    const headerTemplate = await loadTemplate(headerUrl);
-    const footerTemplate = await loadTemplate(footerUrl);
-
-    // Inject into DOM
-    const headerElement = document.getElementById("main-header");
-    const footerElement = document.getElementById("main-footer");
-
-    if (headerElement && footerElement) {
-      renderTemplate(headerTemplate, headerElement);
-      renderTemplate(footerTemplate, footerElement);
-
-      // Optional: reinitialize hamburger or other nav functions
-      if (typeof setupHamburgerMenu === "function") {
-        setupHamburgerMenu();
-      }
-    }
-  } catch (err) {
-    console.error("Failed to load header/footer templates:", err);
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
   }
 }
 
 
 
+// ===============================
+//  Load Header & Footer 
+// ===============================
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("./partials/header.html");
+  const footerTemplate = await loadTemplate("./partials/footer.html");
+
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  if (headerElement && footerElement) {
+    renderWithTemplate(headerTemplate, headerElement);
+    renderWithTemplate(footerTemplate, footerElement);
+  }
+  setupHamburgerMenu(); // Update navigation after loading header
+}
+
+
+
+
+// export async function loadHeaderFooter() {
+//   try {
+//     // Detect project base path (works on localhost & GitHub Pages)
+//     const pathParts = window.location.pathname.split("/").filter(Boolean);
+//     const projectRoot =
+//       window.location.hostname.includes("github.io") && pathParts.length > 1
+//         ? `/${pathParts[0]}/`
+//         : "/";
+
+//     // Build full URLs
+//     const headerUrl = `${projectRoot}partials/header.html`;
+//     const footerUrl = `${projectRoot}partials/footer.html`;
+
+//     // Fetch templates
+//     const headerTemplate = await loadTemplate(headerUrl);
+//     const footerTemplate = await loadTemplate(footerUrl);
+
+//     // Inject into DOM
+//     const headerElement = document.getElementById("main-header");
+//     const footerElement = document.getElementById("main-footer");
+
+//     if (headerElement && footerElement) {
+//       renderTemplate(headerTemplate, headerElement);
+//       renderTemplate(footerTemplate, footerElement);
+
+//       // Optional: reinitialize hamburger or other nav functions
+//       if (typeof setupHamburgerMenu === "function") {
+//         setupHamburgerMenu();
+//       }
+//     }
+//   } catch (err) {
+//     console.error("Failed to load header/footer templates:", err);
+//   }
+// }
+
+
+
 // Create a function to load data
 
+
+// ===============================
+// Generic loader for displaying a list of items 
+// ===============================
+
 /**
- * Generic loader for displaying a list of items
+
  * @param {Array} dataList - Array of objects containing the data
  * @param {string} containerSelector - The selector where items should be displayed
  * @param {string} type - Optional label for context ("app", "subject") — controls button link
