@@ -1,0 +1,13 @@
+{
+  "name": "sierra-library-project",
+  "version": "1.0.0",
+  "description": "WDD330 Final Project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Umaru Bayoh",
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  }
+}
