@@ -1,4 +1,5 @@
-// TODO: Test root index.html
-const hello = document.createElement("h1");
-hello.textContent = "Hello People!";
+// 
+import { createElement } from ./utils.mjs;
+
+const hello = createElement("h1", {textContent: "Hello World"});
 document.getElementById("root").appendChild(hello);

@@ -9,5 +9,8 @@
   "author": "Umaru Bayoh",
   "devDependencies": {
     "parcel": "^2.16.1"
+  },
+  "dependencies": {
+    "prettier": "^3.7.1"
   }
 }
