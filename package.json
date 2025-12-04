@@ -8,6 +8,9 @@
   },
   "author": "Umaru Bayoh",
   "devDependencies": {
+    "@parcel/transformer-image": "^2.16.1",
+    "@parcel/transformer-raw": "^2.16.1",
+    "@parcel/transformer-svg": "^2.16.1",
     "parcel": "^2.16.1"
   },
   "dependencies": {
