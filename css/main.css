@@ -167,7 +167,6 @@ img {
   backdrop-filter: blur(6px);
   padding: 1rem 0.5rem;
   border-radius: 8px;
-  /* max-width: 600px; */
   margin: 2rem auto;
   font-size: 1.2rem;
   color: var(--dark-grey);
@@ -180,19 +179,23 @@ img {
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent-3);
-  margin: 2rem 0 1.5rem -3rem;
+  text-align: left;
+  padding: 1rem 0 0.3rem;
 }
 
 .app-section {
   margin-bottom: 2rem;
+}
 
-  .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1.2rem;
-  margin: -1rem 1rem;
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, max-content));
+    gap: 1.5rem;
+    justify-content: center;
+    justify-items: center;
+  }
 
-  .app-card {
+.app-card {
   border-radius: var(--radius);
   padding: 1rem;
   box-shadow: var(--shadow);
@@ -225,9 +228,8 @@ h2 {
 }
 
 .app-image {
+  
   object-fit: contain;
-}
-}
 }}
 }
 
@@ -533,10 +535,10 @@ color: var(--bg-body);
 
 .solution-text {
   background-color: var(--bg-body);
+  padding: 1rem;
 
   em {
     font-weight: 600;
-
   }
 }
 
@@ -643,8 +645,8 @@ color: var(--bg-body);
   }
 
   .heading {
-    padding: 0 1rem;
     font-size: 1.7rem;
+    margin-left: 1rem;
   }
 
   .apps-container {
@@ -688,18 +690,11 @@ color: var(--bg-body);
 
   .heading {
     font-size: 2em;
-    padding: 0 10rem;
-    margin-top: 2rem;
+    margin-left: 10rem;
   }
 
    .apps-container {
     padding: 0 10rem 2rem;
-  }
-
-  .app-card {
-    padding: 1.5rem;
-    border-radius: 1rem;
-    min-height: 260px;
   }
 
   .app-card h2 {
@@ -714,4 +709,31 @@ color: var(--bg-body);
 
   /* End Page 2 */
 }
-/* End */
+
+@media (min-width: 1200px) {
+   /* Logo */
+  .header-container img {
+    width: 100%;
+    height: auto;
+}
+
+ .header-container span {
+    font-size: 2em;
+    
+  }
+
+  .navigation li a {
+    font-size: 1.3em;
+  }
+
+  .hero-section .heading {
+    font-size: 3em;
+    margin-left: 12rem;
+  }
+
+footer {
+  font-size: 1.5em;
+}
+
+
+}
