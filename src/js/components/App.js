@@ -1,8 +1,8 @@
-import { createElement, hamburgerButton } from "../js/utils";
-import { initRouter } from "./router";
+import { createElement, hamburgerButton } from "./utils";
+import { initRouter } from "../nav/router";
 
-// Use new URL() for Parcel to process SVG
-const sierraLogo = new URL("../images/online-library-logo.svg", import.meta.url).href;
+// Parcel Image Import
+const sierraLogo = new URL("../../images/online-library-logo.svg", import.meta.url).href;
 
 // Header 
 function Header() {
@@ -50,23 +50,10 @@ function Header() {
   return createElement("header", { className: "header-container" }, [logoNameLink, hamButton, nav,]);
 }
 
-// Main Content
-// function mainContent() {
-//   const page1 = createElement("a", { href: "/#/page1" });
-
-//   const page2 = createElement("a", { href: "/#/page2" });
-  
-//   const page3 = createElement("a", { href: "/#/page3" });
-
-//   const nav = createElement("nav", {}, [page1, page2, page3]);
-
-//   return createElement("main", {}, [nav]);
-// }
-
 // Footer
 function Footer() {
   const copyright = createElement("span",
-  {textContent: `© ${new Date().getFullYear()}`, className: "copy-write" },       [createElement("span", {textContent: "🏛️WDD 330 | Final Project | BYU-Idaho🏛️", className: "final-project"
+  {textContent: `© ${new Date().getFullYear()}`, className: "copy-write" },       [createElement("span", {textContent: "🏛️WDD 330 | Final Project | BYU-Idaho | Umaru Bayoh 🏛️", className: "final-project"
     })
     ]
   );
@@ -80,7 +67,13 @@ function App() {
 
   initRouter(main);
 
-  const appContainer = createElement("div", {}, [Header(), main, Footer()]);
+  // Container Div for index.html
+  const appContainer = createElement("div", { className: "app-container" }, [
+  Header(),
+  main,
+  Footer()
+]);
+
 
   // Attach hamburger toggle once header is in DOM
   requestAnimationFrame(() => {

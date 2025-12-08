@@ -1,6 +1,6 @@
-import { createElement } from "../js/utils";
+import { createElement } from "../components/utils";
 
-function Page3() {
+function Liblocate() {
     const title = createElement("h2", { textContent: "Page 3"});
 
     const page1Link = createElement("a", {
@@ -10,4 +10,4 @@ function Page3() {
 
     return createElement("div", {}, [title, page1Link]);
 }
-export default Page3;
+export default Liblocate;

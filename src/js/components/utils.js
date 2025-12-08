@@ -1,9 +1,37 @@
-// Wrapper function for querySelector
+// QUERY SELECTOR WRAPPER
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
 
-// Create Element Helper
+// GET LOCAL STORAGE
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+// SET LOCAL STORAGE
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// CHECK ANSWER
+export function checkAnswer(selected, correct) {
+  return selected === correct;
+}
+
+// CALCULATE SCORE
+export function calculateScore(questions, selections) {
+  let correctCount = 0;
+  questions.forEach((q, idx) => {
+    if (selections[idx] === q.answer) correctCount++;
+  });
+  return {
+    correct: correctCount,
+    total: questions.length,
+    percentage: Math.round((correctCount / questions.length) * 100),
+  };
+}
+
+// CREATE ELEMENT
 export function createElement(type, props = {}, children = []) {
   const element = document.createElement(type);
 
@@ -30,7 +58,7 @@ export function createElement(type, props = {}, children = []) {
 }
 
 
-// Function for Hamburger Button
+// HAMBURGER BUTTON
 export function hamburgerButton() {
   const hamButton = qs("#ham-btn");
   const navBar = qs("#animateme");
@@ -44,7 +72,7 @@ export function hamburgerButton() {
 }
 
 
-// Apps Template
+// APPS TEMPLATE
 export function createItemTemplate(type) {
   // Title
   const title = createElement("h3", {
@@ -105,12 +133,10 @@ export function createItemTemplate(type) {
 }
 
 
-// Insert Item Template
+// INSERT ITEM TEMPLATE
 export function insertItemTemplate(dataList, containerSelector, type = "apps") {
   const parent = qs(containerSelector);
   if (!parent) return; 
-  
-  console.warn(`Container ${containerSelector} not found.`);
 
   // Build the template section
   const section = createItemTemplate(type);
@@ -146,6 +172,7 @@ export function insertItemTemplate(dataList, containerSelector, type = "apps") {
         description: item.appDescription || item.subjectDescription,
         link: item.streamLink || item.subjectLink,
       },
+      // Set click event on app
       onclick: () => {
         // Set dialog content
         title.textContent = card.dataset.title;
@@ -174,12 +201,7 @@ export function insertItemTemplate(dataList, containerSelector, type = "apps") {
   });
 }
 
-// Function to trigger slideUp animation
+// TRIGGER SLIDEUP ANIMATION
 export function triggerAnimation(className) {
   document.body.classList.add(className);
-}
-
-// Open Modal with Animation
-export function openModal(params) {
-  
 }

@@ -1,12 +1,10 @@
-/* Import Oxygen and Roboto fonts from Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Oxygen:400,700,800&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,800&display=swap');
 
-
 :root {
     /* Fonts */
-    --font-body: "Roboto", Arial, sans-serif;
-    --font--headline: "Oxygen", "Arial narrow Bold", sans-serif;
+    --font-body: "Roboto", sans-serif;
+    --font--headline: "Oxygen", sans-serif;
 
     /* Colors */
     --primary-color: #0455bf;    --secondary-color: #03312E;
@@ -41,29 +39,27 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: var(--font-body);
   font-size: var(--font-base);
-  color: var(--dark-grey);
-  background-color: var(--bg-body);
+  background: url('../src/images/bookshelf-background-img.webp');
+  background-size: cover;
+  min-height: 100vh;
+  font-family: var(--font-body);
 }
 
 img {
     width: 100%;
 }
 
-.root-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /* Header */
 .header-container {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
-    padding-top: 0.5rem;
+    padding: 10px;
     line-height: 4rem;
     font-family: var(--font--headline);
+    background-color: var(--bg-body);
 
 
     img {
@@ -88,42 +84,42 @@ img {
         color: var(--primary-color);
         }
 
-    .ham-menu {
+    button {
         background: none;
         border: none;
         cursor: pointer;
     }
 
-    .ham-menu::before {
+    button::before {
         content: "\2630";
         color: var(--primary-color);
         font-size: 44px;
         font-weight: 800;
     }
 
-    .ham-menu.show::before {
+    button.show::before {
         content: "\00D7";
         color: var(--primary-color);
         font-size: 44px;
         font-family: var(--font--headline);
     }
 
-    .navigation {
+    nav {
         grid-row: 2/3;
         grid-column: 1/4;
         line-height: 2.5rem;
         display: none; /*hide nav element by default */
     }
 
-    .navigation.show {
+    nav.show {
         display: block; /*show nav element when it has a class of show*/
     }
 
-    .navigation li {
+    nav li {
         list-style-type: none;
     }
 
-    .navigation a {
+    nav a {
         display: block;
         text-decoration: none;
         border-top: 1px solid lightblue;
@@ -133,85 +129,64 @@ img {
         font-weight: 600;
     }
 
-    .navigation a:hover {
+    nav a:hover {
         background: var(--accent-3);
     }
 
-    .active {
+    nav li a.active {
         background-color: rgba(200, 220, 220, 0.5);
     }
     
-    #animateme {
+    nav#animateme {
         display: grid;
         grid-template-rows: 0fr;
         transition: grid-template-rows 0.5s ease-out;
     }
 
-    #animateme .nav-animate {
+    nav#animateme .nav-animate {
         overflow: hidden;
     }
 
-    #animateme.show {
+    nav#animateme.show {
         grid-template-rows: 1fr;
     }
-} /*End*/
+} /*End Header*/
 
 
-/* Main Content*/
-/* Page 1 */
-.hero-section {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem 0 2rem;
-  overflow: hidden;
-}
 
-.hero-container {
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
+/* Page 1 Wrapper */
+.page1-container {
   margin: 0 auto;
-  overflow: hidden;
-
- img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-}
-
-.mission-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
   padding: 1rem;
+  text-align: center;
+
+
+/* Mission Card */
+.mission-container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  padding: 1rem 0.5rem;
   border-radius: 8px;
-  backdrop-filter: blur(4px);
-}
-
-.mission-container p {
-  margin: 0 auto;
-  font-size: 0.9em;
-  line-height: 1.18;
-  font-weight: 500;
-}
+  /* max-width: 600px; */
+  margin: 2rem auto;
+  font-size: 1.2rem;
+  color: var(--dark-grey);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 
 }
-.heading {
-  margin: 1rem 1rem 0;
-  font-size: 1.5em;
+
+/* Heading */
+ .heading {
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--accent-3);
+  margin: 2rem 0 1.5rem -3rem;
 }
 
+.app-section {
+  margin-bottom: 2rem;
 
-.cards-grid {
+  .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1.2rem;
@@ -250,14 +225,12 @@ h2 {
 }
 
 .app-image {
-  width: 150px;
-  height: 120px;
   object-fit: contain;
 }
 }
-
+}}
 }
-    
+
 
 /* Define the animation */
 @keyframes slideUp {
@@ -279,7 +252,6 @@ h2 {
 }
 
 /* Modal */
-
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
@@ -326,19 +298,23 @@ dialog[open]::backdrop {
 }
 
 dialog p {
-  padding: 1rem 1.2rem;
+  padding: 1rem 0 3rem;
   line-height: 1.6rem;
   opacity: 0.9;
+  text-align: left;
 }
 
 .open-btn {
+  position: absolute;
   display: inline-block;
-  margin-top: 10px;
+  margin: 1rem;
   background: var(--primary-color);
   color: #fff;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 6px;
+  left: 0;
+  bottom: 0;
 }
 
 .open-btn:hover {
@@ -350,7 +326,6 @@ dialog p {
 .app-dialog.open {
     opacity: 1;
     pointer-events: auto;
-    /* transform: translateY(0)scale(1); */
     animation: fadeIn 0.35s ease forwards;
 }
 
@@ -358,52 +333,231 @@ dialog p {
 .app-dialog.closing {
     opacity: 0;
     pointer-events: none;
-    /* transform: translateY(40px) scale(0.92); */
     animation: fadeOut 0.35s ease forwards;
-}
+} /* End Modal */
 
 
 /* Footer */
 footer {
 display: flex;
 flex-direction: column;
+align-items: center;
+justify-content: center;
 border-top: 1px solid var(--accent-2);
 padding: 1rem;
 font-size: 16px;
+color: var(--bg-body);
 }/*End*/
 
+/* End Page 1 */
 
-.counter-footer {
-display: flex;
-gap: 8px;
+
+
+/* Start Page  2*/
+.header-container {
+  border-bottom: 1px solid var(--accent-2);
 }
 
-.counter-button {
-width: 64px;
-height: 32px;
-font-size: 24px;
+.page2-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  
+  .welcome-msg {
+  margin-bottom: 1rem;
+  text-align: center;
+
+  span {
+    color: var(--primary-color);
+    font-weight: 700;
+  }
+
+  p {
+    font-size: var(--font-base);
+  }
 }
 
-.counter-label {
-display: block;
-font-size: 32px;
-background: #f7f7f7;
-width: 136px;
-padding: 4px;
-box-sizing: border-box;
-margin-bottom: 8px;
-text-align: center;
+/* Dropdowns */
+.select-controls {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 1rem;
+  color: var(--dark-grey);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  select, button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  }
+
+  select {
+    margin-bottom: 1rem;
+  }
+
+
+  &:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px rgba(4, 85, 191, 0.3);
+  outline: none;
+}
 }
 
-.root-container {
-padding: 0 15px;
+#fetchBtn {
+  margin: 1rem 0;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+  background: #2980b9;
 }
+}
+
+/* Timer container */
+.timer {
+  margin: 2rem 0;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Countdown mode (exam) */
+#timer.exam-mode {
+  color: #e74c3c; /* red for urgency */
+}
+
+/* Count-up mode (practice) */
+#timer.practice-mode {
+  color: #27ae60; /* green for progress */
+}
+
+/* Question box */
+.question-box {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  h3 {
+    padding: 1rem 0;
+  }
+}
+
+.question-box h3 {
+  margin-top: 0;
+  color: #2563eb;
+}
+
+.question-text {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* Options */
+.option-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.option-input {
+  margin-right: 10px;
+}
+
+.option-text {
+  font-size: 15px;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: not-allowed;
+}
+
+.submit-btn.ready {
+  background: #16a34a; /* green */
+  cursor: pointer;
+}
+
+.submit-btn.ready:hover {
+  background: #15803d;
+}
+
+/* Answer and solution text */
+.answer-text, .solution-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.solution-text {
+  background-color: var(--bg-body);
+
+  em {
+    font-weight: 600;
+
+  }
+}
+
+/* Score summary */
+.score-summary {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #111;
+}
+}
+
+/* End Page 2 */
+
 
 /* Responsive Design */
 
 /* Tablet */
 @media (min-width: 768px) {
 
+  /* Start Header */
   /* Hide hamburger menu */
   #ham-btn {
     display: none;
@@ -474,8 +628,10 @@ padding: 0 15px;
     grid-template-rows: unset;
     transition: none;
   }
-}
 
+/* End Header */
+
+/* Start Page 1 */
   .mission-container {
     bottom: 1rem;
     left: 3rem;
@@ -498,9 +654,19 @@ padding: 0 15px;
   footer {
     text-align: center;
   }
+  /* End Page 1 */
 
+  /* Start Page 2 */
+  .page2-container {
+    max-width: 700px;
+  }
+
+  /* End page 2 */
+} 
+/* End */
 
 @media (min-width: 1024px) {
+  /* Start Header */
   .header-container {
     span {
         font-size: 1.3em;
@@ -512,7 +678,9 @@ padding: 0 15px;
     }
 
   } 
+  /* End Header */
 
+  /* Start Page 1 */
   .mission-container p {
     font-size: 1.5em;
     text-align: center;
@@ -537,4 +705,13 @@ padding: 0 15px;
   .app-card h2 {
     font-size: 1.5rem;
   }
+  /* End Page 1 */
+
+  /* Start Page 2 */
+  .page2-container {
+    max-width: 900px;
+  }
+
+  /* End Page 2 */
 }
+/* End */
