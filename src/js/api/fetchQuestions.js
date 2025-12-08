@@ -1,5 +1,6 @@
 // ALOC API
 const apiKey = process.env.PARCEL_API_KEY;
+console.log("API key loaded:", apiKey);
 
 export async function fetchQuestionV2({ subject, year = null, type = null }) {
   const baseURL = "https://questions.aloc.com.ng/api/v2/q";
