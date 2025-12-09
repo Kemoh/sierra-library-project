@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # Parcel Cache
 .parcel.cache/
+
+# Local Netlify folder
+.netlify
